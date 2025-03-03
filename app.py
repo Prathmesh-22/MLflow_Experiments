@@ -17,6 +17,9 @@ import mlflow
 from mlflow.models import infer_signature
 import mlflow.sklearn
 
+import dagshub
+dagshub.init(repo_owner='Prathmesh-22', repo_name='my-first-repo', mlflow=True)
+
 import logging
 
 logging.basicConfig(level=logging.WARN)
@@ -81,8 +84,8 @@ if __name__ == "__main__":
 
         ## For Remote server only(DAGShub)
 
-        # remote_server_uri="https://dagshub.com/krishnaik06/mlflowexperiments.mlflow"
-        # mlflow.set_tracking_uri(remote_server_uri)
+        remote_server_uri="https://dagshub.com/Prathmesh-22/my-first-repo.mlflow"
+        mlflow.set_tracking_uri(remote_server_uri)
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
@@ -97,3 +100,4 @@ if __name__ == "__main__":
             )
         else:
             mlflow.sklearn.log_model(lr, "model")
+
